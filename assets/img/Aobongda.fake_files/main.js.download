@@ -1,0 +1,860 @@
+const $ = document.querySelector.bind(document)
+const $$ = document.querySelectorAll.bind(document)
+
+var currentNational = [];
+var currentIndex = 0;
+var sum = 0;
+const nationalBtns = $$('.national-menu')
+const nationalGroupList = $$('.national-group-list')
+const nationalLeftBtns = $$('.btn-national-left')
+const nationalRightBtns = $$('.btn-national-right')
+const sliderLeftBtn = $('.btn-slider-left') 
+const sliderRightBtn = $('.btn-slider-right')
+const sliderImgs = $('.slider-imgs.container-fluid')
+const nationalContents = $$('.national-content')
+const myObject = {
+    sliders: [
+        './assets/img/slide-1.jpg',
+        './assets/img/slide-2.jpg',
+        './assets/img/slide-3.png',
+        './assets/img/slide-4.png',
+        './assets/img/slide-5.png'
+    ],
+    contents: [
+        [
+            {
+                img: './assets/img/arghentina.jpg',
+                name: 'Áo thi đấu đội tuyển Arghentina sân nhà 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)',
+            },
+            {
+                img: './assets/img/VN trắng.jpg',
+                name: 'Áo thi đấu đội tuyển Việt Nam sân khách 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/VN vàng.jpg',
+                name: 'Áo thi đấu đội tuyển Việt Nam màu vàng 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/VN xanh.jpg',
+                name: 'Áo thi đấu đội tuyển Việt Nam màu xanh 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/VN đỏ.jpg',
+                name: 'Áo thi đấu đội tuyển Việt Nam sân nhà 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/Ý trắng.jpg',
+                name: 'Áo thi đấu đội tuyển Ý sân khách 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/ý xanh đen.jpg',
+                name: 'Áo thi đấu đội tuyển Việt Nam sân nhà 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/argentina trắng.jpg',
+                name: 'Áo thi đấu đội tuyển Arghentina sân nhà 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+        ],
+        [
+            {
+                img: './assets/img/Bayern đen.jpg',
+                name: 'Áo bóng đá Bayern đen ngắn tay mùa giải 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/Bayern đỏ.jpg',
+                name: 'Áo bóng đá Bayern đỏ ngắn tay mùa giải 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/PSG đen xám.jpg',
+                name: 'Áo bóng đá PSG đen xám mùa giải 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/Real ngọc.jpg',
+                name: 'Áo bóng đá Real ngọc mùa giải 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/Tottenham 01.jpg',
+                name: 'Áo bóng đá Tottenham sân nhà mùa giải 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/Real ngọc đậm.jpg',
+                name: 'Áo bóng đá Real ngọc đậm mùa giải 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/Arsenal đỏ.jpg',
+                name: 'Áo bóng đá Arsenal đỏ sân nhà mùa giải 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/PSG training.jpg',
+                name: 'Áo bóng đá PSG training ngắn tay mùa giải 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/Liver bích cam.jpg',
+                name: 'Áo bóng đá Liverpool bích cam mùa giải 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+            {
+                img: './assets/img/Leicester xanh bích.jpg',
+                name: 'Áo bóng đá Leicester xanh bích mùa giải 2020-2021',
+                link: '#',
+                price1: '80.000đ',
+                price2: '120.000đ',
+                price3: '160.000đ',
+                span1: '(Hàng thun lạnh)',
+                span2: '(Hàng thun co giãn)',
+                span3: '(Hàng mè Caro)'
+            },
+        ],
+        [
+            {
+                img: './assets/img/training1.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh lam',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/training2.jpg',
+                name: 'Áo bóng đá Riki Freedom vàng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/training3.jpg',
+                name: 'Áo bóng đá Riki Freedom ya đậm',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/training4.jpg',
+                name: 'Áo bóng đá Riki Freedom hồng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/training5.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh đen',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/training6.jpg',
+                name: 'Áo bóng đá Riki Freedom trắng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/training7.jpg',
+                name: 'Áo Bullbal Euro Ý',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/training8.jpg',
+                name: 'Áo Bullbal Euro Tây Ban Nha',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/training9.jpg',
+                name: 'Áo Bullbal Euro Pháp',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/training10.jpg',
+                name: 'ÁÁo Bullbal Euro Hà Lan',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }
+        ],
+        [
+            {
+                img: './assets/img/giaybongda1.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh lam',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/giaybongda2.jpg',
+                name: 'Áo bóng đá Riki Freedom vàng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/giaybongda3.jpg',
+                name: 'Áo bóng đá Riki Freedom ya đậm',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/giaybongda4.jpg',
+                name: 'Áo bóng đá Riki Freedom hồng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/giaybongda5.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh đen',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/giaybongda6.jpg',
+                name: 'Áo bóng đá Riki Freedom trắng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/giaybongda7.jpg',
+                name: 'Áo Bullbal Euro Ý',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/giaybongda8.jpg',
+                name: 'Áo Bullbal Euro Tây Ban Nha',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/giaybongda9.jpg',
+                name: 'Áo Bullbal Euro Pháp',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/giaybongda10.jpg',
+                name: 'ÁÁo Bullbal Euro Hà Lan',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }
+        ],
+        [
+            {
+                img: './assets/img/aodaitay1.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh lam',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aodaitay2.jpg',
+                name: 'Áo bóng đá Riki Freedom vàng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aodaitay3.jpg',
+                name: 'Áo bóng đá Riki Freedom ya đậm',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aodaitay4.jpg',
+                name: 'Áo bóng đá Riki Freedom hồng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aodaitay5.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh đen',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aodaitay6.jpg',
+                name: 'Áo bóng đá Riki Freedom trắng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aodaitay7.jpg',
+                name: 'Áo Bullbal Euro Ý',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aodaitay8.jpg',
+                name: 'Áo Bullbal Euro Tây Ban Nha',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aodaitay9.jpg',
+                name: 'Áo Bullbal Euro Pháp',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aodaitay10.jpg',
+                name: 'ÁÁo Bullbal Euro Hà Lan',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }
+        ],
+        [
+            {
+                img: './assets/img/aokhoac1.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh lam',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aokhoac2.jpg',
+                name: 'Áo bóng đá Riki Freedom vàng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aokhoac3.jpg',
+                name: 'Áo bóng đá Riki Freedom ya đậm',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aokhoac4.jpg',
+                name: 'Áo bóng đá Riki Freedom hồng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aokhoac5.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh đen',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aokhoac6.jpg',
+                name: 'Áo bóng đá Riki Freedom trắng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aokhoac7.jpg',
+                name: 'Áo Bullbal Euro Ý',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aokhoac8.jpg',
+                name: 'Áo Bullbal Euro Tây Ban Nha',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aokhoac9.jpg',
+                name: 'Áo Bullbal Euro Pháp',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aokhoac10.jpg',
+                name: 'ÁÁo Bullbal Euro Hà Lan',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }
+        ],
+        [
+            {
+                img: './assets/img/aotreem1.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh lam',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aotreem2.jpg',
+                name: 'Áo bóng đá Riki Freedom vàng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aotreem3.jpg',
+                name: 'Áo bóng đá Riki Freedom ya đậm',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aotreem4.jpg',
+                name: 'Áo bóng đá Riki Freedom hồng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aotreem5.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh đen',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aotreem6.jpg',
+                name: 'Áo bóng đá Riki Freedom trắng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aotreem7.jpg',
+                name: 'Áo Bullbal Euro Ý',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aotreem8.jpg',
+                name: 'Áo Bullbal Euro Tây Ban Nha',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aotreem9.jpg',
+                name: 'Áo Bullbal Euro Pháp',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/aotreem10.jpg',
+                name: 'ÁÁo Bullbal Euro Hà Lan',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }
+        ],
+        [
+            {
+                img: './assets/img/dodabanh2.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh lam',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/dodabanh1.jpg',
+                name: 'Áo bóng đá Riki Freedom vàng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/dodabanh3.jpg',
+                name: 'Áo bóng đá Riki Freedom ya đậm',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/dodabanh4.jpg',
+                name: 'Áo bóng đá Riki Freedom hồng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/dodabanh5.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh đen',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/dodabanh6.jpg',
+                name: 'Áo bóng đá Riki Freedom trắng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/dodabanh7.png',
+                name: 'Áo Bullbal Euro Ý',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/dodabanh8.jpg',
+                name: 'Áo Bullbal Euro Tây Ban Nha',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/dodabanh9.jpg',
+                name: 'Áo Bullbal Euro Pháp',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/dodabanh10.png',
+                name: 'ÁÁo Bullbal Euro Hà Lan',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }
+        ],
+        [
+            {
+                img: './assets/img/bongchuyen1.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh lam',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/bongchuyen2.jpg',
+                name: 'Áo bóng đá Riki Freedom vàng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/bongchuyen3.jpg',
+                name: 'Áo bóng đá Riki Freedom ya đậm',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/bongchuyen4.jpg',
+                name: 'Áo bóng đá Riki Freedom hồng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/bongchuyen5.jpg',
+                name: 'Áo bóng đá Riki Freedom xanh đen',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/bongchuyen6.jpg',
+                name: 'Áo bóng đá Riki Freedom trắng',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/bongchuyen7.jpg',
+                name: 'Áo Bullbal Euro Ý',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/bongchuyen8.jpg',
+                name: 'Áo Bullbal Euro Tây Ban Nha',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/bongchuyen9.jpg',
+                name: 'Áo Bullbal Euro Pháp',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }, 
+            {
+                img: './assets/img/bongchuyen10.jpg',
+                name: 'Áo Bullbal Euro Hà Lan',
+                link: '#',
+                price2: '130.000đ',
+                span2: '(Hàng chính hãng)'
+            }
+        ],
+    ]
+}
+const length = myObject.contents.length
+// Chèn slide HTML
+function slideImg() {
+    const htmls = myObject.sliders.map(function(slider, index) {
+        return `
+            <img src="${slider}" class="" alt="" data-id="${index}">
+        `
+    }) 
+    $('.slider-imgs').innerHTML = htmls.join(' ')
+}
+slideImg()
+
+// Chuyển slide
+sliderRightBtn.onclick = function() {
+    ++currentIndex;
+    if (currentIndex > myObject.sliders.length - 1) {
+        currentIndex = 0
+    }
+    sum = currentIndex * 100;
+    sliderImgs.style.marginLeft = '-' + sum + '%';
+}
+sliderLeftBtn.onclick = function() {
+    --currentIndex;
+    if (currentIndex < 0) {
+        currentIndex = myObject.sliders.length - 1;
+    }
+    sum = currentIndex * 100;
+    sliderImgs.style.marginLeft = '-' + sum + '%';
+}
+setInterval(function(){
+    sliderRightBtn.click()
+}, 6000)
+
+// Chèn national HTML
+function national() {
+    myObject.contents.map(function(content, index) {
+        const htmls = content.map(function(item) {
+            const price1 = index < 2 ? item.price1 : ''
+            const span1 = index < 2 ? item.span1 : ''
+            const span3 = index < 2 ? item.span3 : ''
+            const price3 = index < 2 ? item.price3 : '' 
+            return `
+                <div class="national-item col-lg-2-4 col-lg-3 col-md-4 col-sm-6"">
+                    <div class="national-item-wrap">
+                        <a href="${item.link}" class="national-item-img">
+                            <img src="${item.img}" alt="">
+                        </a>
+                        <div class="national-item-desc">
+                            <a class="national-item-link" href="${item.link}" title="${item.name}">${item.name}</a>
+                            <div class="national-item-prices">
+                                <p class="">${price1} <span>${span1}</span></p>
+                                <p class="">${item.price2} <span>${item.span2}</span></p>
+                                <p class="">${price3} <span>${span3}</span></p>
+                            </div>
+                            <a class="national-item-more" href="${item.link}">Xem chi tiết <i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+        nationalContents[index].innerHTML = htmls.join(' ')
+    })
+}
+national()
+
+for (let i = 0; i<length; ++i) {
+    nationalBtns[i].onclick = function() {
+        nationalGroupList[i].classList.toggle('active');
+    }
+}
+
+for (let i=0; i<length; ++i) {
+    currentNational[i]=0;
+}
+console.log(currentNational)
+
+// Chuyển national
+const nationalItems = []
+for (let i=0; i<length; ++i) {
+    nationalItems[i] = nationalContents[i].querySelectorAll('.national-item')
+}
+const containerWidth = $('.container').clientWidth
+const nationalItemWidth = nationalItems[0][0].clientWidth
+console.log(nationalItemWidth)
+const number = Math.round(containerWidth / nationalItemWidth)
+console.log(nationalItems)
+for (let i = 0; i < length; ++i) {
+    nationalRightBtns[i].onclick = function(e) {
+        if (currentNational[i] < nationalItems[i].length - number) {
+            if (nationalLeftBtns[i].classList.contains('active')) {
+                nationalLeftBtns[i].classList.remove('active')
+            }
+            nationalItems[i][currentNational[i]].classList.toggle('active')
+            if (nationalItems[i][currentNational[i]+number].classList.contains('active')) {
+                nationalItems[i][currentNational[i]+number].classList.remove('active')
+            }
+            ++currentNational[i]
+            if (currentNational[i] == nationalItems[i].length - number) {
+                nationalRightBtns[i].classList.add('active')
+                e.preventDefault()
+            }
+        }
+        console.log(currentNational[i])
+    }
+    nationalLeftBtns[i].onclick = function(e) {
+        if (currentNational[i] > 0) {
+            if (nationalRightBtns[i].classList.contains('active')) {{
+                nationalRightBtns[i].classList.remove('active')
+            }}
+            nationalItems[i][currentNational[i]+number-1].classList.toggle('active')
+            nationalItems[i][currentNational[i] -1].classList.toggle('active')
+            --currentNational[i]
+            if (currentNational[i] == 0) {
+                nationalLeftBtns[i].classList.add('active')
+                e.preventDefault()
+            }
+        }
+        console.log(currentNational[i])
+    }
+
+    if (currentNational[i] == 0) {
+        nationalLeftBtns[i].classList.add('active')
+    }
+}
+
+
+
+
+

@@ -1,0 +1,324 @@
+:root {
+    --text-color: #666;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none !important;
+}
+ul {
+    list-style: none;
+}
+.border-radius-10 {
+    border-radius: 10px;
+}
+.container {
+    overflow: hidden;
+}
+/* Header */
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-left {
+    display: flex;
+    align-items: center;
+}
+.header-right {
+    display: flex;
+    align-items: center;
+}
+.header-hotline-content i {
+    font-size: 12px;
+}
+.header-hotline-content span {
+    font-weight: 600;
+}
+.header-hotline-number {
+    font-size: 18px;
+    font-weight: 700;
+}
+.header-like i {
+    font-size: 12px;
+}
+.header-like a span {
+    font-weight: 600;
+}
+.header-like a:hover {
+    color: rgb(39, 74, 187);
+}
+.header-like > span {
+    font-size: 11px;
+}
+.header-cart {
+    position: relative;
+}
+.header-cart span {
+    position: absolute;
+    top: 2px;
+    right: -2px;
+    font-size: 10px;
+}
+
+/* Navbar */
+.navbar {
+    font-size: 14px;
+    background-color: #312783;
+    padding: 0 !important;
+}
+.nav-link.active {
+    background-color: #4f45a5;
+}
+.nav-link {
+    padding: 10px 8px !important;
+    position: relative;
+}
+.nav-link::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 18px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgb(131, 122, 122);
+}
+
+/* Sliders */
+.sliders {
+    overflow: hidden;
+    position: relative;
+}
+.sliders:hover .slider-control {
+    display: flex;
+}
+.slider-imgs {
+    display: flex;
+    transition: all 1s ease;
+}
+.slider-imgs img {
+    width: 100%;
+}
+.slider-control {
+    position: absolute;
+    width: 100%;
+    display: none;
+    justify-content: space-between;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.slider-control i {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Content */
+.national {
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+.national-content {
+    flex-wrap: nowrap !important;
+}
+.national-heading-wrap {
+    position: relative;
+    display: flex;
+    background-color: #e4e4e4;
+    height: 40px;
+}
+.national-heading-name {
+    position: relative;
+    display: flex;
+    height: 40px;
+    line-height: 40px;
+    background-color: #312783;
+    font-size: 20px;
+    font-weight: 600;
+    border-top-left-radius: 5px;
+    padding: 0 12px;
+    margin-right: 100px;
+    white-space: nowrap;
+}
+.national-heading-name a {
+    padding: 0 12px;
+}
+.national-heading-name::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -40px;
+    border-width: 20px;
+    border-style: solid;
+    border-left-color: #312783;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+}
+.national-group-list {
+    display: flex;
+    align-items: center;
+    margin: 4px 0;
+    flex-basis: 0;
+    flex-grow: 1;
+    white-space: nowrap;
+}
+.national-group-list.active {
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 100%;
+    margin-right: 0!important;
+    min-width: 320px;
+    padding: 6px 4px 12px;
+    margin: 0;
+    box-shadow: 0 0px 3px rgba(0,0,0,0.5);
+    animation: menuBlock ease 1s;
+}
+.national-group-list.active .national-group-item a{
+    display: block;
+    text-align: right;
+    width: 100%;
+    padding: 6px 20px;
+    margin-bottom: 2px;
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0.1);
+}
+.national-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #e4e4e4;
+}
+.national-menu i {
+    font-size: 18px;
+    color: #333;
+    padding: 11px 14px;
+    cursor: pointer;
+}
+.national-menu i:hover {
+    color: royalblue;
+}
+.national-group-item {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    margin-right: 4px;
+    border-radius: 15px;
+}
+.national-item-wrap {
+    display: block;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    box-shadow: 0 0 1px rgba(0,0,0,0.5);
+}
+.national-group-item a {
+    display: block;
+    padding: 4px 10px;
+    color: #584544;
+}
+.national-group-item a i {
+    font-size: 14px;
+}
+.national-content {
+    /* overflow-x: scroll; */
+}
+.national-item {
+    display: block;
+}
+.national-item.active {
+    display: none;
+    animation: fadeIn ease 1s;
+}
+.national-item-img {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+.national-item-img img {
+    width: 90%;
+    height: 350px;
+    object-fit: contain;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
+.national-item-link {
+    color: #333 !important;
+    line-height: 1.2rem;
+    height: 2.4rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.national-item-desc {
+    padding: 12px;
+}
+.national-item-prices {
+    margin: 12px 0 16px;
+}
+.national-item-prices p {
+    margin-bottom: 0 ;
+    color: red;
+    font-size: 16px;
+    font-weight: 600;
+}
+.national-item-prices span {
+    color: rgba(0,0,0,0.3);
+    font-size: 12px;
+    font-weight: 500;
+}
+.national-item-more {
+    color: #312783;
+}
+.national-control {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.national-control i {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 50%;
+    cursor: pointer;
+    color: #fff;
+}
+.national-control i:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+.national-control i.active {
+    color: #ccc;
+    background-color: rgba(0,0,0,0.5);
+    cursor: default;
+}
+.national-control i.active:hover {
+    background-color: none;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes menuBlock {
+    0% {
+        opacity: 0;
+        transform-origin: top right;
+    }
+    100% {
+        opacity: 1;
+        transform-origin: bottom left;
+    }
+}
